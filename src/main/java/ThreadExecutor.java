@@ -1,6 +1,6 @@
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.Queue;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.AbstractOwnableSynchronizer;
 
 /**
  * @author: ljyang
@@ -9,7 +9,20 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 public class ThreadExecutor {
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newCachedThreadPool();
+        ExecutorService executorServiceCached = Executors.newCachedThreadPool(); //SynchronousQueue
+        ExecutorService executorServiceSingle = Executors.newSingleThreadExecutor(); //LinkedBlockingQueue
+        ExecutorService executorServiceFixed = Executors.newFixedThreadPool(1); //LinkedBlockingQueue
+        ExecutorService executorServiceSchedu = Executors.newScheduledThreadPool(1);
+        Executors.defaultThreadFactory();
+        ThreadGroup threadGroup = new ThreadGroup("qq");
 //        ThreadPoolExecutor
+//        CompletableFuture
+//        new ThreadPoolExecutor()
+//        BlockingQueue
+//        Runnable
+//        RunnableFuture extends Runnable,Future
+//        FutureTask
+//        CompletableFuture
+//        AbstractOwnableSynchronizer
     }
 }

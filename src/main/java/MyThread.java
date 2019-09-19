@@ -194,7 +194,7 @@ class SynchronizeObject implements Execute{
     ExecutorService executorService = Executors.newFixedThreadPool(2);
     AtomicLong atomicLong = new AtomicLong(0);
 
-    ExecutorService threadPoolExecutor = new ThreadPoolExecutor()
+//    ExecutorService threadPoolExecutor = new ThreadPoolExecutor();
 
     @Override
     public void execute() {

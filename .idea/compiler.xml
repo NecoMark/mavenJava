@@ -6,7 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mavenJava" />
+        <module name="datastructure" />
+        <module name="flinkcase" />
       </profile>
     </annotationProcessing>
   </component>
