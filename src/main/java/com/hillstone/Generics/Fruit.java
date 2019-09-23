@@ -6,9 +6,8 @@ package com.hillstone.Generics;
  * @description
  */
 
-class Fruit {
-}
-
+class Fruit {}
 class Orange extends Fruit{}
 class Apple extends Fruit{}
+class LittleApple extends Apple{}
 

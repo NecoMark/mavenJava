@@ -24,8 +24,9 @@ public class GenericsDemo {
          * 协变
          */
         List<? extends Fruit> list1;
-        list1 = new ArrayList<Orange>();
-        //list1.add(new Apple);
+        list1 = new ArrayList<Apple>();
+
+//        list1.add(new Apple());
 
         final String DEATH_STRING = "{\"a\":\"\\x";
         try {
@@ -54,8 +55,11 @@ public class GenericsDemo {
          * 逆变
          */
 
-        List<? super Apple> list2;
-//        Apple apple = list2.get();
+        List<? super Apple> list2 = new ArrayList<Fruit>();
+        list2.add(new Apple());
+        Object a = list2.get(0);
+        System.out.println(list2.get(0).getClass());
+        List<? extends Apple> list3 = new ArrayList<LittleApple>();
 
         DateInter dateInter = new DateInter();
 

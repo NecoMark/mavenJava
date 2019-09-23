@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.AbstractOwnableSynchronizer;
@@ -23,6 +25,16 @@ public class ThreadExecutor {
 //        RunnableFuture extends Runnable,Future
 //        FutureTask
 //        CompletableFuture
-//        AbstractOwnableSynchronizer
+//        AbstractOwnableSynchronizer\
+        List l1 = new ArrayList();
+        l1.add("11");
+        l1.add(22);
+        List<String> l2 = l1;
+        l2.add("44");
+        List<?> l3 = l1;
+        Class<?> c = Integer.class;
+        System.out.println(c);
+        System.out.println(l1.toString());
+        System.out.println(l2.toString());
     }
 }

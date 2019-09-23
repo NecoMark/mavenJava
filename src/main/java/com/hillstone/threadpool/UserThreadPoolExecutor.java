@@ -1,7 +1,10 @@
 package com.hillstone.threadpool;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author: ljyang
@@ -13,13 +16,23 @@ public class UserThreadPoolExecutor {
     public static void main(String[] args) {
         Task task = new Task();
         ThreadFactory userThreadFactory = new UserThreadFactory("-demo");
-        LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<>(1);
+        LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<>(2);
 
-        ExecutorService executorService1 = new ThreadPoolExecutor(1,3,60, TimeUnit.SECONDS, queue, userThreadFactory, new ThreadPoolExecutor.AbortPolicy());
-        executorService1.submit(task);
-        executorService1.submit(task);
-        executorService1.submit(task);
-        executorService1.shutdown();
+        ExecutorService executorService1 = new ThreadPoolExecutor(1,3,60,
+                TimeUnit.SECONDS, queue, userThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+//        executorService1.submit(task);
+//        executorService1.submit(task);
+//        executorService1.submit(task);
+//        executorService1.
+        List<Callable<Boolean>> list = new ArrayList<>();
+        for(int i = 0; i< 5; i++){
+            list.add(new Task());
+        }
+        try {
+            executorService1.invokeAll(list);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println(queue.peek());
 
 
@@ -29,8 +42,22 @@ public class UserThreadPoolExecutor {
 
 
     }
-    static class Task implements Runnable{
+    static class Task implements Callable{
+        private AtomicInteger t = new AtomicInteger(1);
+        @Override
+        public Boolean call() {
+            try {
+                TimeUnit.SECONDS.sleep(4);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(t.getAndIncrement() + "world");
+            return true;
+        }
+    }
 
+    static class RunnableTask implements Runnable{
+        private AtomicInteger t = new AtomicInteger(1);
         @Override
         public void run() {
             try {
@@ -38,7 +65,7 @@ public class UserThreadPoolExecutor {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("world");
+            System.out.println(t.getAndIncrement() + "world");
         }
     }
 }
