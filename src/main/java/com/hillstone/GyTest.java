@@ -44,6 +44,11 @@ public class GyTest {
 //        ConcurrentHashMap
 //        System.out.println(Integer.lowestOneBit());
 
+        int a = Integer.MAX_VALUE;
+
+        System.out.println(a);
+
+        TreeMap<Container, Integer> treeMap = new TreeMap<>();
 
 
     }
